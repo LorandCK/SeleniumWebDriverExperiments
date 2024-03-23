@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Support.UI;
 
 namespace TestProject1
 {
@@ -11,7 +12,7 @@ namespace TestProject1
         }
 
         [Test]
-        public void Test1()
+        public void VerboseLogin()
         {
             IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://www.google.com/");
@@ -23,13 +24,39 @@ namespace TestProject1
             webElement1.SendKeys(Keys.Return);
             driver.Quit();
         }
-        [Test] public void Test2()
+        [Test] 
+        public void ShortenedLogin()
         {
             IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://www.google.com/");
             driver.FindElement(By.Id("L2AGLb")).Click();
             driver.FindElement(By.Name("q")).SendKeys("samsung");
             driver.FindElement(By.Name("q")).SendKeys(Keys.Return);
+            driver.Quit();
+        }
+        [Test]
+        public void DropDownTest()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://demoqa.com/select-menu");
+            SelectElement selectElement = new SelectElement(driver.FindElement(By.Id("oldSelectMenu")));
+            selectElement.SelectByText("Blue");
+            driver.Quit();
+
+        }
+        [Test]
+        public void MultiDropdownTest()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://demoqa.com/select-menu");
+            SelectElement multiSelect = new SelectElement(driver.FindElement(By.Id("cars")));
+            multiSelect.SelectByValue("opel");
+            multiSelect.SelectByValue("volvo");
+            IList<IWebElement> selectedOptions = multiSelect.AllSelectedOptions;
+            foreach (IWebElement selectedOption in selectedOptions)
+            {
+                Console.Write(selectedOption.Text+" ");
+            }
             driver.Quit();
         }
     }
