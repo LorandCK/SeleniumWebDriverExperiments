@@ -21,6 +21,16 @@ namespace TestProject1
             IWebElement webElement1 = driver.FindElement(By.Name("q"));
             webElement1.SendKeys("apple");
             webElement1.SendKeys(Keys.Return);
+            driver.Quit();
+        }
+        [Test] public void Test2()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.google.com/");
+            driver.FindElement(By.Id("L2AGLb")).Click();
+            driver.FindElement(By.Name("q")).SendKeys("samsung");
+            driver.FindElement(By.Name("q")).SendKeys(Keys.Return);
+            driver.Quit();
         }
     }
 }
