@@ -24,6 +24,7 @@ namespace TestProject1
             webElement1.SendKeys(Keys.Return);
             driver.Quit();
         }
+
         [Test] 
         public void ShortenedLogin()
         {
@@ -34,6 +35,17 @@ namespace TestProject1
             driver.FindElement(By.Name("q")).SendKeys(Keys.Return);
             driver.Quit();
         }
+
+        [Test]
+        public void CustomMethodLogin()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://www.google.com/");
+            SeleniumCustomMethods.Click(driver, By.Id("L2AGLb"));
+            SeleniumCustomMethods.EnterTextAndReturn(driver, By.Name("q"), "applestore");
+            driver.Quit();
+        }
+
         [Test]
         public void DropDownTest()
         {
@@ -42,8 +54,17 @@ namespace TestProject1
             SelectElement selectElement = new SelectElement(driver.FindElement(By.Id("oldSelectMenu")));
             selectElement.SelectByText("Blue");
             driver.Quit();
-
         }
+
+        [Test]
+        public void DropDownCustomMethod()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://demoqa.com/select-menu");
+            SeleniumCustomMethods.DropDrownByText(driver, By.Id("oldSelectMenu"), "Green");
+            driver.Quit();
+        }
+
         [Test]
         public void MultiDropdownTest()
         {
@@ -59,5 +80,14 @@ namespace TestProject1
             }
             driver.Quit();
         }
+        [Test]
+        public void MultiDropdownCustomMethod()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://demoqa.com/select-menu");
+            SeleniumCustomMethods.DropDrownByValue(driver, By.Id("cars"), ["audi", "saab"]);
+            driver.Quit();
+        }
+
     }
 }
