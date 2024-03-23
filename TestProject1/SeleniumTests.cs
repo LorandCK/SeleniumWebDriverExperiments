@@ -2,7 +2,7 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 
-namespace TestProject1
+namespace SeleniumWebDriver
 {
     public class Tests
     {
