@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumWebDriver.Pages
 {
@@ -25,15 +20,23 @@ namespace SeleniumWebDriver.Pages
 
         IWebElement SearchField => driver.FindElement(By.Name("q"));
 
+        IWebElement LnkResult => driver.FindElement(By.LinkText("Mașini electrice, energie solară și curată | Tesla România"));
+
         public void LoginClick()
         {
-            SeleniumCustomMethods.Click(LoginLink);
+            LoginLink.ClickElement();
         }
 
         public void SearchFieldInput(string searchTerm)
         {
-            SearchField.SendKeys(searchTerm);
-            SeleniumCustomMethods.Submit(SearchField);
+
+            SearchField.EnterText(searchTerm);
+            SearchField.SubmitElement();
+
+        }
+        public bool IsLoggedIn()
+        {
+            return LnkResult.Displayed;
         }
     }
 }

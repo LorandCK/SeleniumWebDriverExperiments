@@ -1,26 +1,21 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SeleniumWebDriver
 {
-    public class SeleniumCustomMethods
+    public static class SeleniumCustomMethods
     {
-        public static void Click(IWebElement locator)
+        public static void ClickElement(this IWebElement locator)
         {
             locator.Click();
         }
 
-        public static void Submit(IWebElement locator)
+        public static void SubmitElement(this IWebElement locator)
         {
             locator.Submit();
         }
 
-        public static void EnterText(IWebElement locator, string text)
+        public static void EnterText(this IWebElement locator, string text)
         {
             locator.Clear();
             locator.SendKeys(text);
@@ -39,7 +34,7 @@ namespace SeleniumWebDriver
             selectElement.SelectByText(text);
         }
 
-        public static void DropDrownByValue(IWebDriver driver, By locator, string[]value)        
+        public static void DropDrownByValue(IWebDriver driver, By locator, string[] value)
         {
             var multiSelect = new SelectElement(driver.FindElement(locator));
             for (int i = 0; i < value.Length; i++)
@@ -49,7 +44,7 @@ namespace SeleniumWebDriver
             }
         }
 
-        public static void MultiSelectByValues(IWebDriver driver, By locator, string[]values)
+        public static void MultiSelectByValues(IWebDriver driver, By locator, string[] values)
         {
             var multiSelect = new SelectElement(driver.FindElement(locator));
             foreach (var value in values)

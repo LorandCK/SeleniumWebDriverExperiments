@@ -43,7 +43,7 @@ namespace SeleniumWebDriver
             var driver = new ChromeDriver();
             driver.Navigate().GoToUrl("https://www.google.com/");
             IWebElement webElement = driver.FindElement(By.Id("L2AGLb"));
-            SeleniumCustomMethods.Click(webElement);
+            SeleniumCustomMethods.ClickElement(webElement);
             SeleniumCustomMethods.EnterTextAndReturn(driver, By.Name("q"), "applestore");
             driver.Quit();
         }
